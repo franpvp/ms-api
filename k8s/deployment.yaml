@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+        - name: spring-app
+          image: sa-santiago-1.ocir.io/axwnet5wuurp/mi-repo/reactapp:latest
+          command:
+            - "tail"
+            - "-f"
+            - "/dev/null"
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: ocirsecret
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: spring-app
+
