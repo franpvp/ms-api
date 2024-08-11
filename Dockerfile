@@ -7,7 +7,7 @@ RUN mkdir /app
 # Establecer el directorio de trabajo
 WORKDIR /app
 # Copiar el archivo JAR dela aplicación en el contenedor
-COPY target/reactProject-0.0.1.jar /app/reactProject-0.0.1.jar
+COPY target/*.jar reactProject-0.0.1.jar
 
 EXPOSE 3050
 
