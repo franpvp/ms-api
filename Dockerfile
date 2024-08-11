@@ -1,5 +1,5 @@
 # Usar la imagen base de OpenJDK 21
-FROM openjdk:21-jdk-slim
+FROM alpine/java:21-jdk
 
 # Crear un directorio para la aplicación
 RUN mkdir /app
